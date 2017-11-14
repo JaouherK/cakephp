@@ -84,9 +84,6 @@ class XcacheEngine extends CacheEngine
         }
 
         $duration = $this->_config['duration'];
-        $expires = time() + $duration;
-        xcache_set($key . '_expires', $expires, $duration);
-
         return xcache_set($key, $value, $duration);
     }
 
@@ -101,22 +98,12 @@ class XcacheEngine extends CacheEngine
     {
         $key = $this->_key($key);
 
-        if (xcache_isset($key)) {
-            $time = time();
-            $cachetime = (int)xcache_get($key . '_expires');
-            if ($cachetime < $time || ($time + $this->_config['duration']) < $cachetime) {
-                return false;
-            }
-
-            $value = xcache_get($key);
-            if (is_string($value) && !is_numeric($value)) {
-                $value = unserialize($value);
-            }
-
-            return $value;
+        $value = xcache_get($key);
+        if (is_string($value) && !is_numeric($value)) {
+            $value = unserialize($value);
         }
 
-        return false;
+        return $value;
     }
 
     /**
