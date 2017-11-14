@@ -84,6 +84,7 @@ class XcacheEngine extends CacheEngine
         }
 
         $duration = $this->_config['duration'];
+
         return xcache_set($key, $value, $duration);
     }
 

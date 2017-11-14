@@ -60,7 +60,8 @@ class ApcuEngine extends CacheEngine
     {
         $key = $this->_key($key);
         $duration = $this->_config['duration'];
-        return  apcu_store($key, $value, $duration);
+
+        return apcu_store($key, $value, $duration);
     }
 
     /**
@@ -168,6 +169,7 @@ class ApcuEngine extends CacheEngine
     {
         $key = $this->_key($key);
         $duration = $this->_config['duration'];
+
         return apcu_add($key, $value, $duration);
     }
 

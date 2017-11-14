@@ -62,6 +62,7 @@ class WincacheEngine extends CacheEngine
     {
         $key = $this->_key($key);
         $duration = $this->_config['duration'];
+
         return wincache_ucache_set($key, $value, $duration);
     }
 
@@ -75,6 +76,7 @@ class WincacheEngine extends CacheEngine
     public function read($key)
     {
         $key = $this->_key($key);
+
         return wincache_ucache_get($key);
     }
 
