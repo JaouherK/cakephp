@@ -100,6 +100,10 @@ class XcacheEngine extends CacheEngine
         $key = $this->_key($key);
 
         $value = xcache_get($key);
+        if ($value === null) {
+            return false;
+        }
+
         if (is_string($value) && !is_numeric($value)) {
             $value = unserialize($value);
         }
